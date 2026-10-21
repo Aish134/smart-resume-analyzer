@@ -1,122 +1,186 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+
+import {
+  ScanSearch,
+  ArrowRight,
+  FileText,
+  Target,
+  Sparkles,
+  ShieldCheck,
+} from "lucide-react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+    <div className="app">
+      <header className="navbar">
+        <a className="brand" href="#home">
+          <span className="brand-icon">
+            <ScanSearch size={23} />
+          </span>
+          SmartHire<span className="brand-dot">.</span>
+        </a>
+
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+        </nav>
+
         <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          className="primary-button"
+          onClick={() =>
+            document.getElementById("get-started")?.scrollIntoView({
+              behavior: "smooth",
+            })
+          }
         >
-          Count is {count}
+          Get started <ArrowRight size={16} />
         </button>
-      </section>
+      </header>
 
-      <div className="ticks"></div>
+      <main>
+        <section className="hero" id="home">
+          <div className="hero-copy">
+            <span className="eyebrow">
+              <Sparkles size={15} /> Your AI-powered career companion
+            </span>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            <h1>
+              Your next opportunity starts with a{" "}
+              <span>better resume.</span>
+            </h1>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+            <p>
+              Analyze your resume, discover relevant jobs, and uncover the
+              skills you need to take your career forward.
+            </p>
+
+            <button
+              className="primary-button hero-button"
+              onClick={() =>
+                document.getElementById("get-started")?.scrollIntoView({
+                  behavior: "smooth",
+                })
+              }
+            >
+              Analyze my resume <ArrowRight size={17} />
+            </button>
+
+            <div className="privacy-note">
+              <ShieldCheck size={18} />
+              Your career data deserves privacy and care.
+            </div>
+          </div>
+
+          <div className="preview">
+            <div className="preview-heading">
+              <FileText size={22} />
+              <div>
+                <strong>Resume insights</strong>
+                <small>Example dashboard preview</small>
+              </div>
+            </div>
+
+            <div className="score">
+              <div className="score-circle">85%</div>
+              <div>
+                <h3>Resume overview</h3>
+                <p>Example score, not a real analysis</p>
+                <span className="success">✓ Skills identified</span>
+                <span className="success">✓ Keywords reviewed</span>
+              </div>
+            </div>
+
+            <h4>Skills overview</h4>
+
+            {[
+              ["Python", "88%"],
+              ["SQL", "76%"],
+              ["Machine Learning", "68%"],
+            ].map(([skill, value]) => (
+              <div className="skill" key={skill}>
+                <div className="skill-label">
+                  <span>{skill}</span>
+                  <span>{value}</span>
+                </div>
+                <div className="track">
+                  <div style={{ width: value }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="features" id="features">
+          <div className="section-heading">
+            <span className="section-label">BUILT FOR YOUR NEXT STEP</span>
+            <h2>Everything you need to move forward.</h2>
+            <p>Practical insights for job seekers and hiring teams.</p>
+          </div>
+
+          <div className="feature-grid">
+            <article className="feature-card">
+              <FileText />
+              <h3>Smart Resume Analysis</h3>
+              <p>
+                Review resume content, skills, keywords, and areas for
+                improvement.
+              </p>
+            </article>
+
+            <article className="feature-card">
+              <Target />
+              <h3>Intelligent Job Matching</h3>
+              <p>
+                Discover jobs that align with your skills and experience.
+              </p>
+            </article>
+
+            <article className="feature-card">
+              <Sparkles />
+              <h3>AI Career Insights</h3>
+              <p>
+                Understand skill gaps and find practical ways to improve.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section className="how" id="how">
+          <div className="section-heading">
+            <span className="section-label">HOW IT WORKS</span>
+            <h2>Three steps to get started.</h2>
+          </div>
+
+          <div className="steps">
+            <div><strong>01</strong><h3>Upload your resume</h3></div>
+            <div><strong>02</strong><h3>Review your insights</h3></div>
+            <div><strong>03</strong><h3>Explore relevant jobs</h3></div>
+          </div>
+        </section>
+
+        <section className="get-started" id="get-started">
+          <h2>Ready to take your next career step?</h2>
+          <p>Smart resume insights and job discovery in one place.</p>
+          <button
+            className="primary-button"
+            onClick={() =>
+              alert("Next, we'll build the registration and login pages.")
+            }
+          >
+            Start your journey <ArrowRight size={16} />
+          </button>
+        </section>
+      </main>
+
+      <footer>
+        <a className="brand" href="#home">
+          SmartHire<span className="brand-dot">.</span>
+        </a>
+        <span>Smarter insights. Better career decisions.</span>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
